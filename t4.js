@@ -12,28 +12,43 @@ async function loadProducts() {
 	}
 }
 
-// Hàm hiển thị danh sách sản phẩm ra HTML
+// Hàm hiển thị danh sách sản phẩm ra bảng HTML
 function renderProducts(products) {
-	const container = document.getElementById("products");
-	if (!container) {
-		console.warn("Không tìm thấy thẻ có id='products'");
+	const tbody = document.getElementById("products-body");
+	if (!tbody) {
+		console.warn("Không tìm thấy thẻ có id='products-body'");
 		return;
 	}
 
-	container.innerHTML = ""; // Xóa nội dung cũ nếu có
+	tbody.innerHTML = ""; // Xóa nội dung cũ nếu có
 
-	products.forEach((item) => {
-		const card = document.createElement("div");
-		card.className = "product-card";
+	products.forEach((item, index) => {
+		const tr = document.createElement("tr");
 
-		card.innerHTML = `
-			<img src="${item.images?.[0] || ""}" alt="${item.title}" class="product-image" />
-			<h3 class="product-title">${item.title}</h3>
-			<p class="product-price">$${item.price}</p>
-			<p class="product-description">${item.description}</p>
+		// Tạo slug đơn giản từ title
+		const slug = (item.title || "")
+			.toLowerCase()
+			.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/[^a-z0-9]+/g, "-")
+			.replace(/(^-|-$)+/g, "");
+
+		const imageUrl = Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : "";
+		const categoryName = item.category && item.category.name ? item.category.name : "";
+
+		tr.innerHTML = `
+			<td class="col-index">${index + 1}</td>
+			<td>${item.title || ""}</td>
+			<td class="slug">${slug}</td>
+			<td class="col-price">$${item.price ?? ""}</td>
+			<td>${item.description || ""}</td>
+			<td>${categoryName}</td>
+			<td class="col-image">
+				${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="thumb" />` : ""}
+			</td>
 		`;
 
-		container.appendChild(card);
+		tbody.appendChild(tr);
 	});
 }
 
