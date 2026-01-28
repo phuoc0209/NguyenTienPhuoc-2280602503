@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bài 1 ngày 28</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #e4ecff);
+      min-height: 100vh;
+      padding: 32px 24px;
+      color: #222;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    #products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+      border-color: #4f46e5;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background-color: #f3f4f6;
+    }
+
+    .product-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 6px 0 4px;
+      color: #111827;
+      min-height: 40px;
+    }
+
+    .product-price {
+      color: #ef4444;
+      font-weight: 700;
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .product-description {
+      font-size: 13px;
+      color: #4b5563;
+      max-height: 64px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.1);
+      color: #4f46e5;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <h1>Danh sách sản phẩm</h1>
+    <p class="subtitle">Dữ liệu lấy từ API https://api.escuelajs.co/api/v1/products</p>
+
+    <div id="products"></div>
+  </div>
+
+  <script src="t4.js"></script>
+</body>
+</html>
